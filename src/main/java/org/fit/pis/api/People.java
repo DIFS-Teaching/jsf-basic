@@ -21,7 +21,7 @@ import org.fit.pis.data.Person;
 
 /*
  * TEST URL:
- * http://localhost:8080/TestApp/rest/people/list
+ * http://localhost:8080/jsf-basic/rest/people/list
  */
 
 @Stateless
