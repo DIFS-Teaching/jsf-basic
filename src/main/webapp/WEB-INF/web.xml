@@ -13,6 +13,8 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!-- JSF Servlet -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -34,32 +36,46 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-	<!-- Jersey provider (e.g. Glassfish) -->
+	
+	<!-- JAXRS Jersey provider (e.g. Glassfish) -->
 	<!-- <servlet>
 		<servlet-name>JAX-RS Servlet</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-	    <init-param>
-	        <param-name>com.sun.jersey.config.property.packages</param-name>
-	        <param-value>org.fit.pis.api</param-value>
-	    </init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet> -->
+		<init-param>
+      		<param-name>jersey.config.server.provider.packages</param-name>
+        	<param-value>org.fit.pis.api</param-value>
+         </init-param>
+		<init-param>
+		    <param-name>jersey.config.server.disableMoxyJson</param-name>
+		    <param-value>true</param-value>
+		</init-param>
+        <load-on-startup>1</load-on-startup>
+		<enabled>true</enabled>
+		<async-supported>false</async-supported>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JAX-RS Servlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping> -->
+	
 	<!-- Apache axis profider (e.g. TomEE) -->
 	<!-- <servlet>
 		<servlet-name>JAX-RS Servlet</servlet-name>
 		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
 		<init-param>
 			<param-name>jaxrs.serviceClasses</param-name>
-			<param-value>org.fit.pis.api.People</param-value>
+			<param-value>org.fit.pis.api.People,org.fit.pis.api.Cars</param-value>
 		</init-param>
 		<init-param>
 			<param-name>jaxrs.providers</param-name>
 			<param-value>com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet> -->
-	<!-- <servlet-mapping>
+	</servlet>
+	<servlet-mapping>
 		<servlet-name>JAX-RS Servlet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>  -->
+	</servlet-mapping> -->
+	
+	
 </web-app>

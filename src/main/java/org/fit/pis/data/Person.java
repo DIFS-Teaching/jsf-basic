@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
@@ -29,6 +30,7 @@ public class Person
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date born;
     @OneToMany(cascade = { ALL }, fetch = EAGER, mappedBy = "owner", orphanRemoval = true)
+    @JsonManagedReference
 	private Collection<Car> cars;
 
     public Person()

@@ -3,7 +3,7 @@ package org.fit.pis.data;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -19,8 +19,12 @@ public class Car
 	private String type;
 	
 	@ManyToOne(fetch=EAGER)
-	@JsonIgnore
+	@JsonBackReference
     private Person owner;
+	
+	public Car()
+	{
+	}
 	
     public String getProd()
     {
