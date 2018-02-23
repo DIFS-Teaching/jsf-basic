@@ -11,7 +11,7 @@ import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Table
-public class Car 
+public class Car
 {
     @Id
     private String reg;

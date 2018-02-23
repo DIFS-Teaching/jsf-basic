@@ -3,8 +3,8 @@ package org.fit.pis.api;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.naming.NamingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -15,19 +15,19 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.MediaType;
 
-import org.fit.pis.back.PersonBean;
 import org.fit.pis.data.Person;
+import org.fit.pis.service.PersonManager;
 
 /*
  * TEST URL:
  * http://localhost:8080/jsf-basic/rest/people/list
  */
-@RequestScoped
+@Stateless
 @Path("/people")
 public class People 
 {
-	@Inject
-	private PersonBean personBean; 
+	@EJB
+	private PersonManager personMgr; 
     @Context
     private UriInfo context;
 
@@ -53,9 +53,7 @@ public class People
     @Produces(MediaType.APPLICATION_JSON)
     public List<Person> getJson() throws NamingException 
     {
-    	//List<Person> data = em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
-    	//return data;
-    	return personBean.getPeople();
+    	return personMgr.findAll();
     }
 
     /**
