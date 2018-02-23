@@ -1,19 +1,22 @@
 package org.fit.pis.back;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
-import org.fit.pis.data.*;
+import org.fit.pis.data.Car;
+import org.fit.pis.data.Person;
 import org.fit.pis.service.PersonManager;
 
-
-@ManagedBean
+@Named
 @SessionScoped
-public class PersonBean
+public class PersonBean implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	@EJB
 	private PersonManager personMgr;
     private Person person;
@@ -25,17 +28,11 @@ public class PersonBean
         car = new Car();
     }
     
-    /**
-     * @return the person
-     */
     public Person getPerson()
     {
         return person;
     }
 
-    /**
-     * @param person the person to set
-     */
     public void setPerson(Person person)
     {
         this.person = person;

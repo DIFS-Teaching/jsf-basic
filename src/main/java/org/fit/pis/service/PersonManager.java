@@ -1,5 +1,5 @@
 /**
- * Stateless bean pro práci s daty osoby
+ * 
  */
 package org.fit.pis.service;
 
@@ -13,8 +13,8 @@ import org.fit.pis.data.Person;
 
 
 /**
+ * Person manager EJB
  * @author burgetr
- *
  */
 @Stateless
 public class PersonManager 
