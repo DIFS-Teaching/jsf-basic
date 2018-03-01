@@ -36,6 +36,11 @@ public class PersonManager
     	em.remove(em.merge(p));
     }
     
+    public Person find(long id)
+    {
+    	return em.find(Person.class, id);
+    }
+    
     public List<Person> findAll()
     {
     	return em.createQuery("SELECT p FROM Person p", Person.class).getResultList();

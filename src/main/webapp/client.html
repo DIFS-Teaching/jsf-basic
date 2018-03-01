@@ -19,7 +19,7 @@
 </head>
 <body>
 <h1>List of people</h1>
-<form id="mainform">
+<form id="reloadform">
     <input id="reload" type="button" value="Reload">
 </form>
 
@@ -31,10 +31,22 @@
   </tbody>
 </table>
 
+<h2>Add or edit</h2>
+<form id="editform">
+<label for="fid">ID</label> <input type="text" id="fid"><br>
+<label for="fname">Name</label> <input type="text" id="fname"><br>
+<label for="fsurname">Surname</label> <input type="text" id="fsurname"><br>
+<label for="fborn">Born</label> <input type="text" id="fborn"><br>
+<input type="submit" value="Save">
+</form>
+
+
 <script type="text/javascript">
+var baseUrl = location.protocol + '//' + location.host + '/jsf-basic/rest/people';
+
 function loadPeople(tab)
 {
-    var url = location.protocol + '//' + location.host + '/jsf-basic/rest/people/list';
+    var url = baseUrl + '/list';
     //console.log(url);
     jQuery.getJSON(url,
 	      function (data) {
@@ -48,8 +60,30 @@ function loadPeople(tab)
 
 $(function() {
     $('#reload').click(function() {
-    		var tab = $('#result');
-            loadPeople(tab);
+    	var tab = $('#result');
+        loadPeople(tab);
+    });
+    $('#editform').submit(function() {
+    	var data = {
+    		id: Number($('#fid').val()),
+    		name: $('#fname').val(),
+    		surname: $('#fsurname').val(),
+    		born: $('#fborn').val()
+    	};
+    	console.log(data);
+    	
+    	$.ajax({
+    	    type: "POST",
+    	    url: baseUrl,
+    	    contentType: "application/json",
+    	    data: JSON.stringify(data)
+    	}).success(function() {
+    		alert('OK!')
+    	}).error(function(msg) {
+    		alert('Error: ' + msg);
+    	});
+    	
+    	return false;
     });
 });
 
