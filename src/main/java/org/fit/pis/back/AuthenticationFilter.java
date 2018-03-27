@@ -3,18 +3,24 @@ package org.fit.pis.back;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.inject.Inject;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
 
 public final class AuthenticationFilter implements Filter 
 {
+	@Inject
+	AuthenticationBean auth;
     @SuppressWarnings("unused")
 	private FilterConfig filterConfig = null;
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
     {
-        HttpSession session = ((HttpServletRequest) request).getSession();
-        AuthenticationBean auth = (AuthenticationBean) session.getAttribute("authenticationBean");
         if (auth != null && auth.isAuthorized())
         {
             chain.doFilter(request, response);
