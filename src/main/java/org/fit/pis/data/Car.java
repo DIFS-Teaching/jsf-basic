@@ -10,7 +10,7 @@ import static javax.persistence.FetchType.EAGER;
 import javax.json.bind.annotation.JsonbTransient;
 
 @Entity
-@Table
+@Table(name = "Car")
 public class Car
 {
     @Id

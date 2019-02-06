@@ -18,7 +18,7 @@ import static javax.persistence.FetchType.EAGER;
 
 
 @Entity
-@Table
+@Table(name = "Person")
 public class Person
 {
     @Id
