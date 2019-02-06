@@ -3,11 +3,11 @@ package org.fit.pis.data;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import static javax.persistence.FetchType.EAGER;
+
+import javax.json.bind.annotation.JsonbTransient;
 
 @Entity
 @Table
@@ -19,7 +19,7 @@ public class Car
 	private String type;
 	
 	@ManyToOne(fetch=EAGER)
-	@JsonBackReference
+	@JsonbTransient
     private Person owner;
 	
 	public Car()
