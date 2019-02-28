@@ -27,8 +27,7 @@ public class CarManager
     public List<Car> findBegining(String id)
     {
         String pref = id + "%";
-        @SuppressWarnings("unchecked")
-		List<Car> ret = em.createQuery("SELECT c FROM Car c WHERE c.reg LIKE :pref").setParameter("pref", pref).getResultList();
+		List<Car> ret = em.createQuery("SELECT c FROM Car c WHERE c.reg LIKE :pref", Car.class).setParameter("pref", pref).getResultList();
     	return ret;
     }
     
@@ -42,10 +41,9 @@ public class CarManager
     	em.remove(em.merge(p));
     }
     
-    @SuppressWarnings("unchecked")
 	public List<Car> findAll()
     {
-    	return em.createQuery("SELECT c FROM Car c").getResultList();
+    	return em.createQuery("SELECT c FROM Car c", Car.class).getResultList();
     }
 
 }
