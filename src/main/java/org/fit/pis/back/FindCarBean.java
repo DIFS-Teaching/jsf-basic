@@ -1,5 +1,6 @@
 package org.fit.pis.back;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -11,9 +12,11 @@ import org.fit.pis.service.CarManager;
 
 @Named
 @SessionScoped
-public class FindCarBean
+public class FindCarBean implements Serializable
 {
-    private Car car;
+	private static final long serialVersionUID = 1L;
+	
+	private Car car;
     private String find;
     private boolean found;
     @EJB
