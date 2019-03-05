@@ -7,11 +7,11 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 @FacesConverter(value="idConverter")
-public class IdConverter implements Converter 
+public class IdConverter implements Converter<Long> 
 {
 
 	@Override
-	public Object getAsObject(FacesContext arg0, UIComponent component, String value)
+	public Long getAsObject(FacesContext arg0, UIComponent component, String value)
 	{
 		if (value.length() == 11 && value.charAt(6) == '/')
 		{
@@ -28,14 +28,9 @@ public class IdConverter implements Converter
 	}
 
 	@Override
-	public String getAsString(FacesContext arg0, UIComponent component, Object value)
+	public String getAsString(FacesContext arg0, UIComponent component, Long value)
 	{
-		try {
-			long val = (Long) value;
-			return (val / 10000) + "/" + (val % 10000);
-		} catch (ClassCastException e) {
-			throw new ConverterException("Invalid ID value");
-		}
+		return (value / 10000) + "/" + (value % 10000);
 	}
 
 }
