@@ -3,13 +3,13 @@ package org.fit.pis.back;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import org.fit.pis.data.*;
 import org.fit.pis.service.CarManager;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class FindCarBean
 {
