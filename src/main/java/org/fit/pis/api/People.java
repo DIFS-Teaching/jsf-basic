@@ -3,6 +3,7 @@ package org.fit.pis.api;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
@@ -48,6 +49,7 @@ public class People
     }
     
     @Path("/list")
+    @RolesAllowed("admin")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Person> getJson() throws NamingException 

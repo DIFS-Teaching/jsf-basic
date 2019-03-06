@@ -48,14 +48,22 @@ function loadPeople(tab)
 {
     var url = baseUrl + '/list';
     //console.log(url);
-    jQuery.getJSON(url,
-	      function (data) {
-		  tab.empty();
-		  for (var i = 0; i < data.length; i++) {
-		      tab.append('<tr><td>'+data[i].name+'</td><td>'+data[i].surname+'</td><td>'+data[i].born+'</td></tr>');
-                  }
-	    }
-    );
+    
+   	$.ajax({
+		type: "GET",
+		dataType : "json",
+		url : url,
+		username : "admin",
+		password : "secret",
+		success : function(data) {
+			tab.empty();
+			for (var i = 0; i < data.length; i++) {
+				tab.append('<tr><td>' + data[i].name + '</td><td>'
+						+ data[i].surname + '</td><td>' + data[i].born
+						+ '</td></tr>');
+			}
+		}
+	});
 }
 
 $(function() {
