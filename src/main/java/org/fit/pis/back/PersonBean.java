@@ -10,6 +10,8 @@ import javax.inject.Named;
 import org.fit.pis.data.Car;
 import org.fit.pis.data.Person;
 import org.fit.pis.service.PersonManager;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 
 @Named
 @SessionScoped
@@ -53,6 +55,21 @@ public class PersonBean implements Serializable
         this.car = car;
     }
 
+    public BarChartModel getBarModel()
+    {
+    	BarChartModel ret = new BarChartModel();
+    	ChartSeries series = new ChartSeries();
+    	series.setLabel("Poèty aut");
+    	
+    	for (Person p : getPeople())
+    	{
+    		series.set(p.getName() + " " + p.getSurname(), p.getCars().size());
+    	}
+    	
+    	ret.addSeries(series);
+    	return ret;
+    }
+    
    //====================================================
     
 	public String actionNew()
